@@ -55,7 +55,6 @@ final class ArraysL {
 
     /**
      * This is the main method to run the program.
-     * 
      * @param array
      * @return mode
      */
