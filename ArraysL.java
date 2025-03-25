@@ -31,6 +31,7 @@ final class ArraysL {
      */
     static float mean(final Integer[] array) {
         float sum = 0;
+        // For each element in the array
         for (int i = 0; i < array.length; i++) {
             sum += array[i];
         }
@@ -43,12 +44,40 @@ final class ArraysL {
      * @return median
      */
     static float median(final Integer[] array) {
+        // If the length of the array is even
         int length = array.length;
         if (length % 2 == 0) {
             return (float) (array[length / 2] + array[length / 2 - 1]) / 2;
         } else {
             return (float) array[length / 2];
         }
+    }
+
+    /**
+     * This is the main method to run the program.
+     * 
+     * @param array
+     * @return mode
+     */
+    static float mode(final Integer[] array) {
+        // Initialize mode and maxCount
+        int mode = 0;
+        int maxCount = 0;
+        // For each element in the array
+        for (int i = 0; i < array.length; i++) {
+            int count = 0;
+            for (int j = 0; j < array.length; j++) {
+                if (array[j] == array[i]) {
+                    count++;
+                }
+            }
+            // If the count is greater than the maxCount
+            if (count > maxCount) {
+                maxCount = count;
+                mode = array[i];
+            }
+        }
+        return mode;
     }
 
     /**
@@ -84,11 +113,14 @@ final class ArraysL {
          + Arrays.toString(numbersArray));
         System.out.printf("The mean is: %.2f\n", mean(numbersArray));
         System.out.printf("The median is: %.2f\n", median(numbersArray));
-        // Write the sorted array, mean, and median to the output file
+        System.out.printf("The mode is: %.2f\n", mode(numbersArray));
+        // Write the sorted array, mode, mean, and median to the output file
         outputFile.write("The sorted array is: \n"
                 + Arrays.toString(numbersArray) + "\n");
         outputFile.write("The mean is: " + mean(numbersArray) + "\n");
         outputFile.write("The median is: " + median(numbersArray) + "\n");
+        outputFile.write("The mode is: " + mode(numbersArray) + "\n");
+        // Close the output file
         outputFile.close();
     }
 }
